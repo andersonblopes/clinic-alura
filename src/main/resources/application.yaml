@@ -1,0 +1,18 @@
+server:
+  port: ${API_SERVER_PORT:8080}
+spring:
+  application:
+    name: api
+  datasource:
+    username: ${API_DB_USERNAME:sonar}
+    password: ${API_DB_PASSWORD:sonar}
+    url: jdbc:postgresql://${API_DB_SERVER_URL:localhost}:${CUSTOMER_DB_SERVER_PORT:5432}/clinic
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    format_sql: true
