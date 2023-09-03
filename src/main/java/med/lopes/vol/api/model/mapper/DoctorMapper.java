@@ -41,7 +41,7 @@ public class DoctorMapper {
      */
     public Address toEntity(AddressInput input) {
         return Address.builder()
-                .description(input.addressType())
+                .description(input.description())
                 .neighborhood(input.neighborhood())
                 .postalCode(input.postalCode())
                 .city(input.city())

@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Pattern;
  */
 public record AddressInput(
         @NotBlank
-        String addressType,
+        String description,
         @NotBlank
         String neighborhood,
         @NotBlank
