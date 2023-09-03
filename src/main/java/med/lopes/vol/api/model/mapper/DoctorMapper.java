@@ -80,7 +80,7 @@ public class DoctorMapper {
      */
     public AddressModel toAddressModel(Address entity) {
         return AddressModel.builder()
-                .addressType(entity.getDescription())
+                .description(entity.getDescription())
                 .neighborhood(entity.getNeighborhood())
                 .postalCode(entity.getPostalCode())
                 .city(entity.getCity())

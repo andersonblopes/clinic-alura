@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressModel {
 
-    private String addressType;
+    private String description;
     private String neighborhood;
     private String postalCode;
     private String city;
