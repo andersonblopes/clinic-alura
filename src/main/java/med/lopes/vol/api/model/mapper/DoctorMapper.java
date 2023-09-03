@@ -1,18 +1,19 @@
 package med.lopes.vol.api.model.mapper;
 
-import med.lopes.vol.api.domain.entities.Address;
+import lombok.RequiredArgsConstructor;
 import med.lopes.vol.api.domain.entities.Doctor;
-import med.lopes.vol.api.model.AddressModel;
 import med.lopes.vol.api.model.DoctorModel;
-import med.lopes.vol.api.model.input.AddressInput;
 import med.lopes.vol.api.model.input.DoctorInput;
 import org.springframework.stereotype.Component;
 
 /**
  * The type Doctor mapper.
  */
+@RequiredArgsConstructor
 @Component
 public class DoctorMapper {
+
+    private final AddressMapper addressMapper;
 
     /**
      * To entity doctor.
@@ -28,26 +29,7 @@ public class DoctorMapper {
                 .name(input.name())
                 .phone(input.phone())
                 .specialty(input.speciality())
-                .address(toEntity(input.address()))
-                .build();
-    }
-
-
-    /**
-     * To entity address.
-     *
-     * @param input the input
-     * @return the address
-     */
-    public Address toEntity(AddressInput input) {
-        return Address.builder()
-                .description(input.description())
-                .neighborhood(input.neighborhood())
-                .postalCode(input.postalCode())
-                .city(input.city())
-                .state(input.state())
-                .number(input.number())
-                .notes(input.notes())
+                .address(addressMapper.toEntity(input.address()))
                 .build();
     }
 
@@ -66,27 +48,9 @@ public class DoctorMapper {
                 .phone(entity.getPhone())
                 .id(entity.getId())
                 .speciality(entity.getSpecialty())
-                .address(toAddressModel(entity.getAddress()))
+                .address(addressMapper.toModel(entity.getAddress()))
 
                 .build();
 
-    }
-
-    /**
-     * To address model.
-     *
-     * @param entity the entity
-     * @return the address model
-     */
-    public AddressModel toAddressModel(Address entity) {
-        return AddressModel.builder()
-                .description(entity.getDescription())
-                .neighborhood(entity.getNeighborhood())
-                .postalCode(entity.getPostalCode())
-                .city(entity.getCity())
-                .state(entity.getState())
-                .number(entity.getNumber())
-                .notes(entity.getNotes())
-                .build();
     }
 }
