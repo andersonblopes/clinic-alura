@@ -1,11 +1,24 @@
 package med.lopes.vol.api.model.input;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
+
 /**
  * The type Patient input.
  */
-public record PatientInput(String name,
-                           String email,
-                           String phoneNumber,
-                           String cpf,
-                           AddressInput address) {
+public record PatientInput(
+        @NotBlank String name,
+        @NotBlank
+        @Email
+        String email,
+        @NotBlank
+        String phoneNumber,
+        @NotBlank
+        @CPF
+        String cpf,
+        @NotNull
+        @Valid AddressInput address) {
 }

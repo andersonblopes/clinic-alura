@@ -1,5 +1,6 @@
 package med.lopes.vol.api.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import med.lopes.vol.api.model.input.PatientInput;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class PatientController {
      * @param input the input
      */
     @PostMapping
-    public void create(@RequestBody PatientInput input) {
+    public void create(@RequestBody @Valid PatientInput input) {
         log.info(String.valueOf(input));
     }
 
