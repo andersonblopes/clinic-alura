@@ -37,6 +37,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      * Instantiates a new Global exception handler.
      *
      * @param messageSource the message source
+     * @param environment   the environment
      */
     public GlobalExceptionHandler(MessageSource messageSource, Environment environment) {
         this.messageSource = messageSource;
