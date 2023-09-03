@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS doctor(
     email text NOT NULL UNIQUE,
     crm text NOT NULL UNIQUE,
     specialty text NOT NULL,
-    phone text,
     address_type text,
     neighborhood text,
     postal_code text,
