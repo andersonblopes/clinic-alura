@@ -1,7 +1,8 @@
 package med.lopes.vol.api.model.input;
 
-import med.lopes.vol.api.model.AddressInput;
-
+/**
+ * The type Patient input.
+ */
 public record PatientInput(String name,
                            String email,
                            String phoneNumber,

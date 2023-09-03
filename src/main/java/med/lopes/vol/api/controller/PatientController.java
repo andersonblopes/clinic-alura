@@ -7,13 +7,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Patient controller.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
 
+    /**
+     * Create.
+     *
+     * @param input the input
+     */
     @PostMapping
-    public void creat(@RequestBody PatientInput input) {
+    public void create(@RequestBody PatientInput input) {
         log.info(String.valueOf(input));
     }
 
