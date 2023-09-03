@@ -3,7 +3,6 @@ package med.lopes.vol.api.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import med.lopes.vol.api.domain.enums.Speciality;
-import med.lopes.vol.api.model.input.DoctorInput;
 
 /**
  * The type Doctor.
@@ -30,17 +29,4 @@ public class Doctor {
 
     @Embedded
     private Address address;
-
-    /**
-     * Instantiates a new Doctor.
-     *
-     * @param input the input
-     */
-    public Doctor(DoctorInput input) {
-        this.crm = input.crm();
-        this.email = input.email();
-        this.name = input.name();
-        this.speciality = input.speciality();
-        this.address = new Address(input.address());
-    }
 }

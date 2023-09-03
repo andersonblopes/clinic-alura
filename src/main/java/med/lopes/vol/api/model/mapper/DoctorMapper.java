@@ -4,6 +4,8 @@ import med.lopes.vol.api.domain.entities.Address;
 import med.lopes.vol.api.domain.entities.Doctor;
 import med.lopes.vol.api.model.AddressModel;
 import med.lopes.vol.api.model.DoctorModel;
+import med.lopes.vol.api.model.input.AddressInput;
+import med.lopes.vol.api.model.input.DoctorInput;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +13,42 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DoctorMapper {
+
+    /**
+     * To entity doctor.
+     *
+     * @param input the input
+     * @return the doctor
+     */
+    public Doctor toEntity(DoctorInput input) {
+
+        return Doctor.builder()
+                .crm(input.crm())
+                .email(input.email())
+                .name(input.name())
+                .speciality(input.speciality())
+                .address(toEntity(input.address()))
+                .build();
+    }
+
+
+    /**
+     * To entity address.
+     *
+     * @param input the input
+     * @return the address
+     */
+    public Address toEntity(AddressInput input) {
+        return Address.builder()
+                .addressType(input.addressType())
+                .neighborhood(input.neighborhood())
+                .postalCode(input.postalCode())
+                .city(input.city())
+                .state(input.state())
+                .number(input.number())
+                .notes(input.notes())
+                .build();
+    }
 
     /**
      * To model doctor model.

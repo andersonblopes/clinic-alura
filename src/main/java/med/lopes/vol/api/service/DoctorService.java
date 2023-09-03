@@ -2,7 +2,6 @@ package med.lopes.vol.api.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import med.lopes.vol.api.domain.entities.Doctor;
 import med.lopes.vol.api.domain.repository.DoctorRepository;
 import med.lopes.vol.api.model.DoctorModel;
 import med.lopes.vol.api.model.input.DoctorInput;
@@ -28,7 +27,7 @@ public class DoctorService {
     @Transactional
     public DoctorModel create(DoctorInput input) {
 
-        var entity = new Doctor(input);
+        var entity = doctorMapper.toEntity(input);
         doctorRepository.save(entity);
 
         return doctorMapper.toModel(entity);

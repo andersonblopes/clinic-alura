@@ -2,7 +2,6 @@ package med.lopes.vol.api.domain.entities;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;
-import med.lopes.vol.api.model.input.AddressInput;
 
 /**
  * The type Address.
@@ -22,19 +21,4 @@ public class Address {
     private String state;
     private String number;
     private String notes;
-
-    /**
-     * Instantiates a new Address.
-     *
-     * @param input the input
-     */
-    public Address(AddressInput input) {
-        this.addressType = input.addressType();
-        this.neighborhood = input.neighborhood();
-        this.postalCode = input.postalCode();
-        this.city = input.city();
-        this.state = input.state();
-        this.number = input.number();
-        this.notes = input.notes();
-    }
 }
