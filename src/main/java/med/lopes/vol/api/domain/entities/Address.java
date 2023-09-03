@@ -15,8 +15,8 @@ import lombok.*;
 @Embeddable
 public class Address {
 
-    @Column(name = "address_type")
-    private String addressType;
+    @Column(name = "address")
+    private String description;
 
     @Column(name = "neighborhood")
     private String neighborhood;

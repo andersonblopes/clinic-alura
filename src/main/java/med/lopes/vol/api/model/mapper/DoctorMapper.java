@@ -41,7 +41,7 @@ public class DoctorMapper {
      */
     public Address toEntity(AddressInput input) {
         return Address.builder()
-                .addressType(input.addressType())
+                .description(input.addressType())
                 .neighborhood(input.neighborhood())
                 .postalCode(input.postalCode())
                 .city(input.city())
@@ -80,7 +80,7 @@ public class DoctorMapper {
      */
     public AddressModel toAddressModel(Address entity) {
         return AddressModel.builder()
-                .addressType(entity.getAddressType())
+                .addressType(entity.getDescription())
                 .neighborhood(entity.getNeighborhood())
                 .postalCode(entity.getPostalCode())
                 .city(entity.getCity())
