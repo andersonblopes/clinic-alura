@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS doctor(
     state text,
     number text,
     notes text
-)
+);

@@ -19,6 +19,7 @@ public class DoctorModel {
     private String name;
     private String email;
     private String crm;
+    private String phone;
     private Speciality speciality;
     private AddressModel address;
 }

@@ -30,6 +30,9 @@ public class Doctor {
     @Column(name = "crm")
     private String crm;
 
+    @Column(name = "phone")
+    private String phone;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "specialty")
     private Speciality specialty;

@@ -17,6 +17,8 @@ public record DoctorInput(@NotBlank String name,
                           @NotBlank
                           @Pattern(regexp = "\\d{4,6}")
                           String crm,
+                          @NotBlank
+                          String phone,
                           @NotNull
                           Speciality speciality,
                           @NotNull

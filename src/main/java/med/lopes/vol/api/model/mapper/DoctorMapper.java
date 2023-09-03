@@ -26,6 +26,7 @@ public class DoctorMapper {
                 .crm(input.crm())
                 .email(input.email())
                 .name(input.name())
+                .phone(input.phone())
                 .specialty(input.speciality())
                 .address(toEntity(input.address()))
                 .build();
@@ -62,6 +63,7 @@ public class DoctorMapper {
                 .crm(entity.getCrm())
                 .email(entity.getEmail())
                 .name(entity.getName())
+                .phone(entity.getPhone())
                 .id(entity.getId())
                 .speciality(entity.getSpecialty())
                 .address(toAddressModel(entity.getAddress()))
