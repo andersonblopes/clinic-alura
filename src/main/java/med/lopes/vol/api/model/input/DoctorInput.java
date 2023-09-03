@@ -1,6 +1,6 @@
 package med.lopes.vol.api.model.input;
 
-import med.lopes.vol.api.model.enums.Speciality;
+import med.lopes.vol.api.domain.enums.Speciality;
 
 /**
  * The type Doctor input.

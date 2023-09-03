@@ -1,4 +1,4 @@
-package med.lopes.vol.api.model.enums;
+package med.lopes.vol.api.domain.enums;
 
 /**
  * The enum Speciality.

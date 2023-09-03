@@ -1,6 +1,6 @@
-package med.lopes.vol.api.model.domain.repository;
+package med.lopes.vol.api.domain.repository;
 
-import med.lopes.vol.api.model.domain.entities.Doctor;
+import med.lopes.vol.api.domain.entities.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
