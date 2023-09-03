@@ -1,4 +1,4 @@
-package med.lopes.vol.api.model.domain;
+package med.lopes.vol.api.model.domain.entities;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;
