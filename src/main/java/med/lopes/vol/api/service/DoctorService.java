@@ -1,12 +1,12 @@
 package med.lopes.vol.api.service;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import med.lopes.vol.api.domain.repository.DoctorRepository;
 import med.lopes.vol.api.model.DoctorModel;
 import med.lopes.vol.api.model.input.DoctorInput;
 import med.lopes.vol.api.model.mapper.DoctorMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The type Doctor service.
