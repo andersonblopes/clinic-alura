@@ -1,5 +1,6 @@
 package med.lopes.vol.api.domain.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
@@ -14,11 +15,24 @@ import lombok.*;
 @Embeddable
 public class Address {
 
+    @Column(name = "address_type")
     private String addressType;
+
+    @Column(name = "neighborhood")
     private String neighborhood;
+
+    @Column(name = "postal_code")
     private String postalCode;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "state")
     private String state;
+
+    @Column(name = "number")
     private String number;
+
+    @Column(name = "notes")
     private String notes;
 }

@@ -20,12 +20,19 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "crm")
     private String crm;
 
     @Enumerated(EnumType.STRING)
-    private Speciality speciality;
+    @Column(name = "specialty")
+    private Speciality specialty;
 
     @Embedded
     private Address address;
