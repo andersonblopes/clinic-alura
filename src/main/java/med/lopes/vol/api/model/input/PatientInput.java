@@ -15,7 +15,7 @@ public record PatientInput(
         @Email
         String email,
         @NotBlank
-        String phoneNumber,
+        String phone,
         @NotBlank
         @CPF
         String cpf,
