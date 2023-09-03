@@ -3,6 +3,8 @@ package med.lopes.vol.api.exceptions;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,8 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    private final Environment environment;
+
     private final MessageSource messageSource;
 
     /**
@@ -34,8 +38,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      *
      * @param messageSource the message source
      */
-    public GlobalExceptionHandler(MessageSource messageSource) {
+    public GlobalExceptionHandler(MessageSource messageSource, Environment environment) {
         this.messageSource = messageSource;
+        this.environment = environment;
     }
 
     /**
@@ -86,11 +91,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private ExceptionMessage buildError(WebRequest webRequest, String bodyResponse, Exception exception) {
 
         HttpServletRequest request = ((ServletWebRequest) webRequest).getRequest();
+        String details = null;
+
+        if (!environment.acceptsProfiles(Profiles.of("prod"))) {
+            details = exception.getMessage();
+        }
 
         return ExceptionMessage.builder()
                 .path(request.getRequestURL().toString())
                 .message(bodyResponse)
-                .error(exception.getMessage())
+                .details(details)
                 .timestamp(OffsetDateTime.now())
                 .build();
     }

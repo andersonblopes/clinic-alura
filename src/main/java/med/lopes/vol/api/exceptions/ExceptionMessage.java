@@ -26,5 +26,5 @@ public class ExceptionMessage {
     private String status;
     private String message;
     List<Field> fields;
-    private String error;
+    private String details;
 }
