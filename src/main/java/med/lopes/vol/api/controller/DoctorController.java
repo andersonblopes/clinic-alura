@@ -1,5 +1,6 @@
 package med.lopes.vol.api.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import med.lopes.vol.api.model.DoctorModel;
@@ -28,7 +29,7 @@ public class DoctorController {
      * @return the doctor model
      */
     @PostMapping
-    public DoctorModel create(@RequestBody DoctorInput input) {
+    public DoctorModel create(@RequestBody @Valid DoctorInput input) {
 
         return doctorService.create(input);
     }

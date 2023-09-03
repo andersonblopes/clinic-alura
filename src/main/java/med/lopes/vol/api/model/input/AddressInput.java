@@ -1,13 +1,23 @@
 package med.lopes.vol.api.model.input;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 /**
  * The type Address input.
  */
-public record AddressInput(String addressType,
-                           String neighborhood,
-                           String postalCode,
-                           String city,
-                           String state,
-                           String number,
-                           String notes) {
+public record AddressInput(
+        @NotBlank
+        String addressType,
+        @NotBlank
+        String neighborhood,
+        @NotBlank
+        @Pattern(regexp = "\\d{4}")
+        String postalCode,
+        @NotBlank
+        String city,
+        @NotBlank
+        String state,
+        String number,
+        String notes) {
 }
