@@ -1,6 +1,7 @@
 package med.lopes.vol.api.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
+import med.lopes.vol.api.exceptions.custom.EntityNotFoundException;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.env.Environment;
@@ -42,6 +43,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public GlobalExceptionHandler(MessageSource messageSource, Environment environment) {
         this.messageSource = messageSource;
         this.environment = environment;
+    }
+
+    /**
+     * Handle entity not found exception response entity.
+     *
+     * @param exception the exception
+     * @param request   the request
+     * @return the response entity
+     */
+    @ExceptionHandler(value = {EntityNotFoundException.class})
+    protected ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException exception, WebRequest request) {
+        String bodyResponse = "Entity not found";
+        var error = buildError(request, bodyResponse, exception);
+        return handleExceptionInternal(exception, error, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     /**
