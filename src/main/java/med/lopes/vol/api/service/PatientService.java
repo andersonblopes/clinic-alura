@@ -6,11 +6,10 @@ import med.lopes.vol.api.domain.repository.PatientRepository;
 import med.lopes.vol.api.model.PatientModel;
 import med.lopes.vol.api.model.input.PatientInput;
 import med.lopes.vol.api.model.mapper.PatientMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * The type Patient service.
@@ -38,13 +37,14 @@ public class PatientService {
     }
 
     /**
-     * List set.
+     * List page.
      *
-     * @return the set
+     * @param pageable the pageable
+     * @return the page
      */
-    public Set<PatientModel> list() {
-        List<Patient> patientList = patientRepository.findAll();
+    public Page<PatientModel> list(Pageable pageable) {
+        Page<Patient> patientList = patientRepository.findAll(pageable);
 
-        return patientMapper.toSet(patientList);
+        return patientMapper.toPage(patientList);
     }
 }

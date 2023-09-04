@@ -6,14 +6,14 @@ import lombok.extern.slf4j.Slf4j;
 import med.lopes.vol.api.model.PatientModel;
 import med.lopes.vol.api.model.input.PatientInput;
 import med.lopes.vol.api.service.PatientService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Set;
 
 /**
  * The type Patient controller.
@@ -40,11 +40,12 @@ public class PatientController {
     /**
      * List response entity.
      *
+     * @param pageable the pageable
      * @return the response entity
      */
     @GetMapping
-    public ResponseEntity<Set<PatientModel>> list() {
-        return ResponseEntity.ok().body(patientService.list());
+    public ResponseEntity<Page<PatientModel>> list(Pageable pageable) {
+        return ResponseEntity.ok().body(patientService.list(pageable));
     }
 
 }
