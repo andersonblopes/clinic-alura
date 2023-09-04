@@ -4,11 +4,8 @@ import lombok.RequiredArgsConstructor;
 import med.lopes.vol.api.domain.entities.Doctor;
 import med.lopes.vol.api.model.DoctorModel;
 import med.lopes.vol.api.model.input.DoctorInput;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * The type Doctor mapper.
@@ -59,12 +56,12 @@ public class DoctorMapper {
     }
 
     /**
-     * To set a set.
+     * To page.
      *
-     * @param doctorList the doctor list
-     * @return the set
+     * @param page the page
+     * @return the page
      */
-    public Set<DoctorModel> toSet(List<Doctor> doctorList) {
-        return doctorList.stream().map(this::toModel).collect(Collectors.toSet());
+    public Page<DoctorModel> toPage(Page<Doctor> page) {
+        return page.map(this::toModel);
     }
 }
