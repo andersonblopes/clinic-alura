@@ -1,12 +1,16 @@
 package med.lopes.vol.api.service;
 
 import lombok.RequiredArgsConstructor;
+import med.lopes.vol.api.domain.entities.Patient;
 import med.lopes.vol.api.domain.repository.PatientRepository;
 import med.lopes.vol.api.model.PatientModel;
 import med.lopes.vol.api.model.input.PatientInput;
 import med.lopes.vol.api.model.mapper.PatientMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * The type Patient service.
@@ -31,5 +35,16 @@ public class PatientService {
         patientRepository.save(entity);
 
         return patientMapper.toModel(entity);
+    }
+
+    /**
+     * List set.
+     *
+     * @return the set
+     */
+    public Set<PatientModel> list() {
+        List<Patient> patientList = patientRepository.findAll();
+
+        return patientMapper.toSet(patientList);
     }
 }
