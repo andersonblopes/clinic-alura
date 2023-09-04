@@ -8,12 +8,15 @@ import med.lopes.vol.api.model.input.PatientInput;
 import med.lopes.vol.api.service.PatientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 /**
  * The type Patient controller.
@@ -44,7 +47,7 @@ public class PatientController {
      * @return the response entity
      */
     @GetMapping
-    public ResponseEntity<Page<PatientModel>> list(Pageable pageable) {
+    public ResponseEntity<Page<PatientModel>> list(@PageableDefault(page = 0, size = 10, sort = {"name"}, direction = ASC) Pageable pageable) {
         return ResponseEntity.ok().body(patientService.list(pageable));
     }
 
