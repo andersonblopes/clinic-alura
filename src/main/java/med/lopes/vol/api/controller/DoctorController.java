@@ -5,13 +5,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import med.lopes.vol.api.model.DoctorModel;
 import med.lopes.vol.api.model.input.DoctorInput;
+import med.lopes.vol.api.model.input.DoctorUpdateInput;
 import med.lopes.vol.api.service.DoctorService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +52,18 @@ public class DoctorController {
     @GetMapping
     public ResponseEntity<Page<DoctorModel>> list(@PageableDefault(page = 0, size = 10, sort = {"name"}, direction = ASC) Pageable pageable) {
         return ResponseEntity.ok().body(doctorService.list(pageable));
+    }
+
+    /**
+     * Update response entity.
+     *
+     * @param doctorId the doctor id
+     * @param input    the input
+     * @return the response entity
+     */
+    @PutMapping("/{doctorId}")
+    public ResponseEntity<DoctorModel> update(@PathVariable("doctorId") Long doctorId, @RequestBody @Valid DoctorUpdateInput input) {
+        return ResponseEntity.ok().body(doctorService.update(doctorId, input));
     }
 
 }
