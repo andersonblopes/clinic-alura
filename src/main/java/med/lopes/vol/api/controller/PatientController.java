@@ -5,13 +5,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import med.lopes.vol.api.model.PatientModel;
 import med.lopes.vol.api.model.input.PatientInput;
+import med.lopes.vol.api.model.input.PatientUpdateInput;
 import med.lopes.vol.api.service.PatientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +52,18 @@ public class PatientController {
     @GetMapping
     public ResponseEntity<Page<PatientModel>> list(@PageableDefault(page = 0, size = 10, sort = {"name"}, direction = ASC) Pageable pageable) {
         return ResponseEntity.ok().body(patientService.list(pageable));
+    }
+
+    /**
+     * Update response entity.
+     *
+     * @param patientId the patient id
+     * @param input     the input
+     * @return the response entity
+     */
+    @PutMapping("/{patientId}")
+    public ResponseEntity<PatientModel> update(@PathVariable("patientId") Long patientId, @RequestBody @Valid PatientUpdateInput input) {
+        return ResponseEntity.ok().body(patientService.update(patientId, input));
     }
 
 }
