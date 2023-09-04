@@ -6,6 +6,10 @@ import med.lopes.vol.api.model.DoctorModel;
 import med.lopes.vol.api.model.input.DoctorInput;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * The type Doctor mapper.
  */
@@ -34,7 +38,7 @@ public class DoctorMapper {
     }
 
     /**
-     * To model doctor model.
+     * To model a doctor model.
      *
      * @param entity the entity
      * @return the doctor model
@@ -52,5 +56,15 @@ public class DoctorMapper {
 
                 .build();
 
+    }
+
+    /**
+     * To set a set.
+     *
+     * @param doctorList the doctor list
+     * @return the set
+     */
+    public Set<DoctorModel> toSet(List<Doctor> doctorList) {
+        return doctorList.stream().map(this::toModel).collect(Collectors.toSet());
     }
 }
