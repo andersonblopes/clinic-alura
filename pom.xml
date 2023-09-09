@@ -10,7 +10,7 @@
     </parent>
     <groupId>med.lopes.voll</groupId>
     <artifactId>clinic-center-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>clinic-center-api</name>
     <description>REST API from medical center application</description>
     <properties>
