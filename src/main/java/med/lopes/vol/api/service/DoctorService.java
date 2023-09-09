@@ -84,16 +84,6 @@ public class DoctorService {
         return doctorMapper.toModel(entity);
     }
 
-    private Doctor findChecking(Long doctorId) {
-        Optional<Doctor> entityOptional = doctorRepository.findById(doctorId);
-
-        if (entityOptional.isEmpty()) {
-            throw new EntityNotFoundException("Entity with id: " + doctorId + ", not found");
-        }
-
-        return entityOptional.get();
-    }
-
     /**
      * Deactivate.
      *
@@ -104,5 +94,15 @@ public class DoctorService {
         Doctor entity = findChecking(doctorId);
 
         entity.setActive(Boolean.FALSE);
+    }
+
+    private Doctor findChecking(Long doctorId) {
+        Optional<Doctor> entityOptional = doctorRepository.findByIdAndActiveTrue(doctorId);
+
+        if (entityOptional.isEmpty()) {
+            throw new EntityNotFoundException("Entity active with id: " + doctorId + ", not found");
+        }
+
+        return entityOptional.get();
     }
 }
