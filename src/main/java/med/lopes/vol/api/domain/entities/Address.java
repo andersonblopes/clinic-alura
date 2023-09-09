@@ -36,7 +36,7 @@ public class Address {
 
     @Column(name = "number")
     private String number;
-
+    
     @Column(name = "notes")
     private String notes;
 }

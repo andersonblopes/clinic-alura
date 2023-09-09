@@ -29,9 +29,6 @@ public class ExceptionMessage {
     private OffsetDateTime timestamp;
     private String status;
     private String message;
-    /**
-     * The Fields.
-     */
-    List<Field> fields;
+    private List<Field> fields;
     private String details;
 }

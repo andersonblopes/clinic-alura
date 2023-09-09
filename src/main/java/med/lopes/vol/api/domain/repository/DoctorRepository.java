@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
     /**
-     * Find by active true optional.
+     * Find by id and active true optional.
      *
      * @param id the id
      * @return the optional

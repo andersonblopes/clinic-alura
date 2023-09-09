@@ -35,7 +35,7 @@ public class DoctorMapper {
     }
 
     /**
-     * To model a doctor model.
+     * To model doctor model.
      *
      * @param entity the entity
      * @return the doctor model
@@ -56,7 +56,7 @@ public class DoctorMapper {
     }
 
     /**
-     * To page.
+     * To page page.
      *
      * @param page the page
      * @return the page

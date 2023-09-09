@@ -1,7 +1,7 @@
 package med.lopes.vol.api.exceptions.custom;
 
 /**
- * The type Entity didn't find exception.
+ * The type Entity not found exception.
  */
 public class EntityNotFoundException extends RuntimeException {
 

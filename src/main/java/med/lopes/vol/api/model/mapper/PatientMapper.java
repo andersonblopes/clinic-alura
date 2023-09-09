@@ -55,7 +55,7 @@ public class PatientMapper {
     }
 
     /**
-     * To page.
+     * To page page.
      *
      * @param page the page
      * @return the page

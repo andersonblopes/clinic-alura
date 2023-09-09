@@ -84,6 +84,11 @@ public class PatientService {
         return patientMapper.toModel(entity);
     }
 
+    /**
+     * Deactivate.
+     *
+     * @param doctorId the doctor id
+     */
     @Transactional
     public void deactivate(Long doctorId) {
         Patient entity = findChecking(doctorId);

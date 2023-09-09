@@ -69,6 +69,11 @@ public class PatientController {
         return ResponseEntity.ok().body(patientService.update(patientId, input));
     }
 
+    /**
+     * Deactivate.
+     *
+     * @param patientId the patient id
+     */
     @DeleteMapping("/{patientId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deactivate(@PathVariable("patientId") Long patientId) {
