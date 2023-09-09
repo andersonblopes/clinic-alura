@@ -30,7 +30,7 @@ import static org.springframework.data.domain.Sort.Direction.ASC;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/patients")
+@RequestMapping("/v1/patients")
 public class PatientController {
 
     private final PatientService patientService;
