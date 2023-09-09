@@ -13,10 +13,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
-import java.util.Objects;
 import java.util.Optional;
+
+import static java.util.Objects.nonNull;
+import static org.springframework.util.StringUtils.hasText;
 
 /**
  * The type Patient service.
@@ -69,24 +70,24 @@ public class PatientService {
         Patient entity = null;
         Optional<Patient> entityOptional = patientRepository.findById(patientId);
 
-        if (entityOptional.isPresent()) {
-            entity = entityOptional.get();
-
-            if (StringUtils.hasText(input.name())) {
-                entity.setName(input.name());
-            }
-
-            if (StringUtils.hasText(input.phone())) {
-                entity.setPhone(input.phone());
-            }
-
-            if (Objects.nonNull(input.address())) {
-                entity.setAddress(addressMapper.toEntity(input.address()));
-            }
-
-        } else {
+        if (entityOptional.isEmpty()) {
             throw new EntityNotFoundException("Entity with id: " + patientId + ", not found");
+
         }
+        entity = entityOptional.get();
+
+        if (hasText(input.name())) {
+            entity.setName(input.name());
+        }
+
+        if (hasText(input.phone())) {
+            entity.setPhone(input.phone());
+        }
+
+        if (nonNull(input.address())) {
+            entity.setAddress(addressMapper.toUpdateEntity(entity.getAddress(), input.address()));
+        }
+
 
         return patientMapper.toModel(entity);
     }
