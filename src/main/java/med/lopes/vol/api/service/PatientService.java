@@ -52,7 +52,7 @@ public class PatientService {
      * @return the page
      */
     public Page<PatientModel> list(Pageable pageable) {
-        Page<Patient> patientList = patientRepository.findAll(pageable);
+        Page<Patient> patientList = patientRepository.findByActiveTrue(pageable);
 
         return patientMapper.toPage(patientList);
     }
@@ -67,14 +67,7 @@ public class PatientService {
     @Transactional
     public PatientModel update(Long patientId, PatientUpdateInput input) {
 
-        Patient entity = null;
-        Optional<Patient> entityOptional = patientRepository.findById(patientId);
-
-        if (entityOptional.isEmpty()) {
-            throw new EntityNotFoundException("Entity with id: " + patientId + ", not found");
-
-        }
-        entity = entityOptional.get();
+        Patient entity = findChecking(patientId);
 
         if (hasText(input.name())) {
             entity.setName(input.name());
@@ -88,7 +81,23 @@ public class PatientService {
             entity.setAddress(addressMapper.toUpdateEntity(entity.getAddress(), input.address()));
         }
 
-
         return patientMapper.toModel(entity);
+    }
+
+    @Transactional
+    public void deactivate(Long doctorId) {
+        Patient entity = findChecking(doctorId);
+
+        entity.setActive(Boolean.FALSE);
+    }
+
+    private Patient findChecking(Long patientId) {
+        Optional<Patient> entityOptional = patientRepository.findByIdAndActiveTrue(patientId);
+
+        if (entityOptional.isEmpty()) {
+            throw new EntityNotFoundException("Entity active with id: " + patientId + ", not found");
+
+        }
+        return entityOptional.get();
     }
 }
