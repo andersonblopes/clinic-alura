@@ -52,7 +52,7 @@ public class DoctorService {
      * @return the page
      */
     public Page<DoctorModel> list(Pageable pageable) {
-        Page<Doctor> page = doctorRepository.findAll(pageable);
+        Page<Doctor> page = doctorRepository.findByActiveTrue(pageable);
 
         return doctorMapper.toPage(page);
     }
@@ -67,14 +67,7 @@ public class DoctorService {
     @Transactional
     public DoctorModel update(Long doctorId, DoctorUpdateInput input) {
 
-        Doctor entity = null;
-        Optional<Doctor> entityOptional = doctorRepository.findById(doctorId);
-
-        if (entityOptional.isEmpty()) {
-            throw new EntityNotFoundException("Entity with id: " + doctorId + ", not found");
-        }
-
-        entity = entityOptional.get();
+        Doctor entity = findChecking(doctorId);
 
         if (hasText(input.name())) {
             entity.setName(input.name());
@@ -89,5 +82,27 @@ public class DoctorService {
         }
 
         return doctorMapper.toModel(entity);
+    }
+
+    private Doctor findChecking(Long doctorId) {
+        Optional<Doctor> entityOptional = doctorRepository.findById(doctorId);
+
+        if (entityOptional.isEmpty()) {
+            throw new EntityNotFoundException("Entity with id: " + doctorId + ", not found");
+        }
+
+        return entityOptional.get();
+    }
+
+    /**
+     * Deactivate.
+     *
+     * @param doctorId the doctor id
+     */
+    @Transactional
+    public void deactivate(Long doctorId) {
+        Doctor entity = findChecking(doctorId);
+
+        entity.setActive(Boolean.FALSE);
     }
 }
