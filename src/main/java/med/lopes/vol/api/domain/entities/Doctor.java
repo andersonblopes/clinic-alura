@@ -8,6 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,4 +53,12 @@ public class Doctor {
 
     @Embedded
     private Address address;
+
+    @Column(name = "active")
+    private Boolean active;
+
+    @PrePersist
+    private void setDefaultValues() {
+        this.active = Boolean.TRUE;
+    }
 }
