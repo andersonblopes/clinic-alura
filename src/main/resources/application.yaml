@@ -15,9 +15,12 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
   security:
-    user:
-      name: api
-      password: 123456
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          introspection-uri: http://localhost:9000/oauth/check_token
+          client-id: checkToken
+          client-secret: check123
 logging:
   file: boot_api.log
   org.hibernate: INFO
