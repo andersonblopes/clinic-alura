@@ -18,7 +18,7 @@ spring:
     oauth2:
       resourceserver:
         opaquetoken:
-          introspection-uri: http://localhost:9000/oauth/check_token
+          introspection-uri: http://localhost:9000/oauth2/introspect
           client-id: resource-server-app
           client-secret: check123
 logging:
