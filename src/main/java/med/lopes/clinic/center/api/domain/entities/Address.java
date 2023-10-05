@@ -1,13 +1,12 @@
 package med.lopes.clinic.center.api.domain.entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 
 /**
  * The type Address.

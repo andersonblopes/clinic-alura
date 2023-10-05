@@ -1,8 +1,8 @@
 package med.lopes.clinic.center.api.model.input;
 
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 /**
  * The type Address input.
