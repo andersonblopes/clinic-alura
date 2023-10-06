@@ -19,15 +19,15 @@ spring:
       resourceserver:
         opaquetoken:
           introspection-uri: http://localhost:9000/oauth2/introspect
-          client-id: resource-server-app
-          client-secret: check123
+          client-id: resource-server
+          client-secret: checkToken123
         jwt:
           jwk-set-uri: http://localhost:9000/oauth2/jwks
 logging:
-  file: boot_api.log
-  org.hibernate: INFO
   level:
     root: INFO
     org.springframework.web: INFO
     org.springframework.security: INFO
     org.springframework.security.oauth2: INFO
+  file:
+    name: boot_api.log
