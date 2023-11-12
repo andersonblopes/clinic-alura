@@ -31,4 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
-/boot_api.log
+/*log
+/*.gz
